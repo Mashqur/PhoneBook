@@ -17,8 +17,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        number.keyboardType = UIKeyboardType.phonePad
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -35,6 +33,7 @@ class ViewController: UIViewController {
             newContact.setValue(number.text, forKey: "phoneNumber")
             name.text = ""
             number.text = ""
+            name.resignFirstResponder()
             number.resignFirstResponder()
             do{
                 try context.save()
