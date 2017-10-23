@@ -10,7 +10,6 @@ import UIKit
 
 class CustomCell: UITableViewCell {
 
-
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var number: UILabel!
 }

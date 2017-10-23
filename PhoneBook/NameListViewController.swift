@@ -33,9 +33,8 @@ class NameListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = nameNumberTable.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
-        let nameNumber = contact[indexPath.row]
-        cell.name?.text = nameNumber.name
-        cell.number?.text = nameNumber.phoneNumber
+        cell.name?.text = contact[indexPath.row].name
+        cell.number?.text = contact[indexPath.row].phoneNumber
         return cell
     }
     
@@ -75,7 +74,7 @@ class NameListViewController: UIViewController, UITableViewDelegate, UITableView
     func fetchContact(){
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do{
-            try contact = context.fetch(Family.fetchRequest())
+            contact = try context.fetch(Family.fetchRequest())
         }
         catch{
             print(error)
@@ -88,7 +87,7 @@ class NameListViewController: UIViewController, UITableViewDelegate, UITableView
         context.delete(user as! NSManagedObject)
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         do{
-            try  self.contact =  context.fetch(Family.fetchRequest())
+            self.contact = try  context.fetch(Family.fetchRequest())
         }
         catch{
             print(error)
@@ -99,7 +98,7 @@ class NameListViewController: UIViewController, UITableViewDelegate, UITableView
     func messageAlert(tableRow: Any){
         let nameAlert = UIAlertController(title: "Delete Contact", message: "Do you want to delete?", preferredStyle: UIAlertControllerStyle.alert)
         nameAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {ACTION in self.performDelete(tableRow: tableRow)}))
-        nameAlert.addAction(UIAlertAction(title: "CANCEL", style: UIAlertActionStyle.cancel, handler: nil))
+        nameAlert.addAction(UIAlertAction(title: "CANCEL", style: UIAlertActionStyle.cancel, handler: {ACTION in self.nameNumberTable.reloadData()}))
         self.present(nameAlert, animated: true, completion: nil)
     }
 

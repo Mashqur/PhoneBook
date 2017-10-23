@@ -42,11 +42,9 @@ class ViewController: UIViewController {
             catch{
                 print(error)
             }
-            
         }else{
             AlertMessageGenerator.alertMessage(title: "No name or number", message: "Please fill name or number", controller: self)
         }
     }
-
 }
 
