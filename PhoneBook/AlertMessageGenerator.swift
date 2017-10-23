@@ -15,5 +15,4 @@ class AlertMessageGenerator {
         controller.present(alert, animated: true, completion: nil)
     
     }
-
 }

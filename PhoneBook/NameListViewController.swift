@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
-class NameListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NameListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,MFMessageComposeViewControllerDelegate {
 
     @IBOutlet weak var nameNumberTable: UITableView!
 
@@ -37,42 +38,38 @@ class NameListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.number?.text = nameNumber.phoneNumber
         return cell
     }
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//        
-//        if editingStyle == .delete{
-//            let user = contact[indexPath.row]
-//            context.delete(user)
-//            (UIApplication.shared.delegate as! AppDelegate).saveContext()
-//            do{
-//              try  contact =  context.fetch(Family.fetchRequest())
-//            }
-//            catch{
-//                print(error)
-//            }
-//        }
-//        nameNumberTable.reloadData()
-//    }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("TAPPED")
-//        let call = contact[indexPath.row].phoneNumber
-//        print(call!)
-//        UIApplication.shared.open(NSURL(string: "tel://\(String(describing: call!))")! as URL, options: [:], completionHandler: nil)
-//    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController,
+                                      didFinishWith result: MessageComposeResult) {
+        self.nameNumberTable.reloadData()
+        controller.dismiss(animated: true, completion: nil)
+    }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+        let delete = UITableViewRowAction(style: .normal, title: "Delete" , handler: { action, index in
             self.messageAlert(tableRow: self.contact[indexPath.row])
-        }
+        })
         delete.backgroundColor = UIColor.lightGray
         
-        let call = UITableViewRowAction(style: .normal, title: "Call") { action, index in
+        let call = UITableViewRowAction(style: .normal, title: "Call", handler: { action, index in
             let call = self.contact[indexPath.row].phoneNumber
             UIApplication.shared.open(NSURL(string: "tel://\(String(describing: call!))")! as URL, options: [:], completionHandler: nil)
-        }
+        })
         call.backgroundColor = UIColor.orange
-        return [delete, call]
+        
+        let message = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Message", handler: {action, index in
+            print("clicked")
+            if (!MFMessageComposeViewController.canSendText()) {
+                AlertMessageGenerator.alertMessage(title: "Message", message: "Message is not available", controller: self)
+            }else{
+                let messageVC = MFMessageComposeViewController()
+                messageVC.messageComposeDelegate = self
+                messageVC.recipients = [self.contact[indexPath.row].phoneNumber!]
+                self.present(messageVC, animated: true, completion: nil)
+            }
+        })
+        message.backgroundColor = UIColor.gray
+        return [delete, call, message]
     }
     
     func fetchContact(){
