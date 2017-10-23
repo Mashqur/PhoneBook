@@ -44,10 +44,7 @@ class ViewController: UIViewController {
             }
             
         }else{
-            let nameAlert = UIAlertController(title: "No name or number", message: "Please fill name or number", preferredStyle: UIAlertControllerStyle.alert)
-            nameAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            //self.present(nameAlert, animated: true, completion: nil)
-            present(nameAlert, animated: true, completion: nil)
+            AlertMessageGenerator.alertMessage(title: "No name or number", message: "Please fill name or number", controller: self)
         }
     }
 

@@ -15,6 +15,7 @@
 		8471F41D1F973536003C44C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8471F41C1F973536003C44C7 /* Assets.xcassets */; };
 		8471F4201F973536003C44C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8471F41E1F973536003C44C7 /* LaunchScreen.storyboard */; };
 		8471F4281F97381B003C44C7 /* NameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8471F4271F97381B003C44C7 /* NameListViewController.swift */; };
+		84BAFCFC1F9DCFA9006B4B22 /* AlertMessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BAFCFB1F9DCFA9006B4B22 /* AlertMessageGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		8471F41F1F973536003C44C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8471F4211F973536003C44C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8471F4271F97381B003C44C7 /* NameListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameListViewController.swift; sourceTree = "<group>"; };
+		84BAFCFB1F9DCFA9006B4B22 /* AlertMessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertMessageGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				8471F4191F973536003C44C7 /* PhoneBook.xcdatamodeld */,
 				8471F4271F97381B003C44C7 /* NameListViewController.swift */,
 				84188D031F988BAB004C5211 /* CustomCell.swift */,
+				84BAFCFB1F9DCFA9006B4B22 /* AlertMessageGenerator.swift */,
 			);
 			path = PhoneBook;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				8471F41B1F973536003C44C7 /* PhoneBook.xcdatamodeld in Sources */,
 				84188D041F988BAB004C5211 /* CustomCell.swift in Sources */,
 				8471F4131F973536003C44C7 /* AppDelegate.swift in Sources */,
+				84BAFCFC1F9DCFA9006B4B22 /* AlertMessageGenerator.swift in Sources */,
 				8471F4281F97381B003C44C7 /* NameListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
